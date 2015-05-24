@@ -22,7 +22,7 @@
             = @restaurant.description
           %p
             %b Categoría:
-            = @restaurant.category_id
+            = @restaurant.category.name
 
           = link_to 'Editar', edit_restaurant_path(@restaurant)
           \|

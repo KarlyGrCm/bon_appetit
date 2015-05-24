@@ -22,7 +22,7 @@
           %td= restaurant.phone
           %td= restaurant.rfc
           %td= restaurant.description
-          %td= restaurant.category_id
+          %td= restaurant.category.name
           %td= link_to 'Mostrar', restaurant
           %td= link_to 'Editar', edit_restaurant_path(restaurant)
           %td= link_to 'Eliminar', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
