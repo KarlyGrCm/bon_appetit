@@ -29,3 +29,6 @@
           = link_to 'Editar', edit_restaurant_path(@restaurant)
           \|
           = link_to 'Regresar', restaurants_path
+
+    .col.s12.m5
+      = image_tag(@restaurant.image.url)

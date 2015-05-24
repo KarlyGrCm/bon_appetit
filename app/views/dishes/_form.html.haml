@@ -18,6 +18,12 @@
     - unless @dish.errors[:price].blank?
       %span.red-text.text-accent-4
         = @dish.errors[:price].shift
+  .row
+    = f.label 'Imagen'
+    = f.file_field :image
+    - unless @dish.errors[:image].blank?
+      %span.red-text.text-accent-4
+        = @dish.errors[:image].shift
   .actions.row
     = f.submit 'Aceptar', class: 'btn'
     = link_to 'Regresar', restaurant_dishes_path(@restaurant), class: 'btn'

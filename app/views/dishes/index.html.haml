@@ -5,7 +5,6 @@
     %thead
       %tr
         %th Nombre
-        %th Restaurante
         %th Descripcion
         %th Precio
         %th
@@ -16,7 +15,6 @@
       - @dishes.each do |dish|
         %tr
           %td= dish.name
-          %td= dish.restaurant_id
           %td= dish.description
           %td= dish.price
           %td= link_to 'Mostrar', restaurant_dish_path(@restaurant, dish)
