@@ -1,0 +1,45 @@
+= form_for @restaurant do |f|
+  
+  .row
+    %i.mdi-action-account-balance.prefix
+    = f.label 'Nombre*'
+    = f.text_field :name
+    - unless @restaurant.errors[:name].blank?
+      %span.red-text.text-accent-4
+        = @restaurant.errors[:name].shift
+  .row
+    %i.mdi-action-room.prefix
+    = f.label 'Domicilio*'
+    = f.text_field :address
+    - unless @restaurant.errors[:address].blank?
+      %span.red-text.text-accent-4
+        = @restaurant.errors[:address].shift
+  .row
+    %i.mdi-communication-phone.prefix
+    = f.label 'Teléfono*'
+    = f.text_field :phone
+    - unless @restaurant.errors[:phone].blank?
+      %span.red-text.text-accent-4
+        = @restaurant.errors[:phone].shift
+  .row
+    %i.mdi-action-assignment.prefix
+    = f.label 'RFC*'
+    = f.text_field :rfc
+    - unless @restaurant.errors[:rfc].blank?
+      %span.red-text.text-accent-4
+        = @restaurant.errors[:rfc].shift
+  .row
+    %i.di-editor-mode-edit.prefix
+    = f.label 'Descripcion*'
+    = f.text_area :description, class: 'materialize-textarea'
+    - unless @restaurant.errors[:description].blank?
+      %span.red-text.text-accent-4
+        = @restaurant.errors[:description].shift
+  .row
+    = f.label 'Categoria*'
+    = f.number_field :category_id
+    - unless @restaurant.errors[:category_id].blank?
+      %span.red-text.text-accent-4
+        = @restaurant.errors[:category_id].shift
+  .row
+    = f.submit 'Aceptar', class: 'btn'
