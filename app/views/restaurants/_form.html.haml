@@ -37,7 +37,7 @@
         = @restaurant.errors[:description].shift
   .row
     = f.label 'Categoria*'
-    = f.number_field :category_id
+    = select(:restaurant, :category_id, Category.all.collect{|category| [category.name, category.id]},{prompt: "Selecciona una categoría"}, {class: 'browser-default'})
     - unless @restaurant.errors[:category_id].blank?
       %span.red-text.text-accent-4
         = @restaurant.errors[:category_id].shift
