@@ -1,4 +1,4 @@
-= form_for @restaurant do |f|
+= form_for(@restaurant, html: {multipart: true} ) do |f|
   
   .row
     %i.mdi-action-account-balance.prefix
@@ -41,5 +41,11 @@
     - unless @restaurant.errors[:category_id].blank?
       %span.red-text.text-accent-4
         = @restaurant.errors[:category_id].shift
+  .row
+    = f.label 'Imagen'
+    = f.file_field :image
+    - unless @restaurant.errors[:image].blank?
+      %span.red-text.text-accent-4
+        = @restaurant.errors[:image].shift
   .row
     = f.submit 'Aceptar', class: 'btn'
