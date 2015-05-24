@@ -24,6 +24,8 @@
             %b Categoría:
             = @restaurant.category.name
 
+          =link_to 'Ver platillos', restaurant_dishes_path(@restaurant)
+          \|
           = link_to 'Editar', edit_restaurant_path(@restaurant)
           \|
           = link_to 'Regresar', restaurants_path

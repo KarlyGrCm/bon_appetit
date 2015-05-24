@@ -1,0 +1,28 @@
+.container
+  %h1.center Platillos
+
+  %table
+    %thead
+      %tr
+        %th Nombre
+        %th Restaurante
+        %th Descripcion
+        %th Precio
+        %th
+        %th
+        %th
+
+    %tbody
+      - @dishes.each do |dish|
+        %tr
+          %td= dish.name
+          %td= dish.restaurant_id
+          %td= dish.description
+          %td= dish.price
+          %td= link_to 'Mostrar', restaurant_dish_path(@restaurant, dish)
+          %td= link_to 'Editar',  edit_restaurant_dish_path(@restaurant, dish)
+          %td= link_to 'Eliminar', restaurant_dish_path(@restaurant, dish), method: :delete, data:{confirm: '¿Seguro que quieres eliminar este platillo?'}
+
+  %br
+
+  = link_to 'Nuevo platillo', new_restaurant_dish_path(@restaurant),class: 'btn'
