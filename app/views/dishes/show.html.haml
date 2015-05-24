@@ -1,0 +1,20 @@
+.container
+	
+	%p#notice= notice
+	.row
+		.col.s12.m5
+			.card-panel.red.lighten-5
+				%span.black-text
+					%p
+						%b Nombre:
+						= @dish.name
+					%p
+						%b Descripción:
+						= @dish.description
+					%p
+						%b Precio:
+						= @dish.price
+
+					= link_to 'Editar', edit_restaurant_dish_path(@restaurant, @dish)
+					\|
+					= link_to 'Regresar', restaurant_dishes_path(@restaurant)

@@ -1,0 +1,23 @@
+= form_for([@restaurant,@dish]) do |f|
+
+  .row
+    = f.label 'Nombre'
+    = f.text_field :name
+    - unless @dish.errors[:name].blank?
+      %span.red-text.text-accent-4
+        = @dish.errors[:name].shift
+  .row
+    = f.label 'Descripción'
+    = f.text_field :description
+    - unless @dish.errors[:description].blank?
+      %span.red-text.text-accent-4
+        = @dish.errors[:description].shift
+  .row
+    = f.label 'Precio'
+    = f.text_field :price
+    - unless @dish.errors[:price].blank?
+      %span.red-text.text-accent-4
+        = @dish.errors[:price].shift
+  .actions.row
+    = f.submit 'Aceptar', class: 'btn'
+    = link_to 'Regresar', restaurant_dishes_path(@restaurant), class: 'btn'

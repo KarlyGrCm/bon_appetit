@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :restaurants
-   root 'welcome#index'
+  resources :restaurants do 
+   resources :dishes
+ end
+ root 'welcome#index'
 end
