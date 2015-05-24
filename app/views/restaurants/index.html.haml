@@ -1,0 +1,32 @@
+.container
+  %h1.center Restaurantes
+
+  %table
+    %thead
+      %tr
+        %th Nombre
+        %th Domicilio
+        %th Teléfono
+        %th RFC
+        %th Descripción
+        %th Categoría 
+        %th
+        %th
+        %th
+
+    %tbody
+      - @restaurants.each do |restaurant|
+        %tr
+          %td= restaurant.name
+          %td= restaurant.address
+          %td= restaurant.phone
+          %td= restaurant.rfc
+          %td= restaurant.description
+          %td= restaurant.category_id
+          %td= link_to 'Mostrar', restaurant
+          %td= link_to 'Editar', edit_restaurant_path(restaurant)
+          %td= link_to 'Eliminar', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %br
+
+  = link_to 'Nuevo restaurante', new_restaurant_path, class: 'btn'

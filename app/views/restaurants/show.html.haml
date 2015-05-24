@@ -1,0 +1,29 @@
+.container
+  %p#notice= notice
+  
+  .row
+    .col.s12.m5
+      .card-panel.red.lighten-5
+        %span.black-text
+          %p
+            %b Nombre:
+            = @restaurant.name
+          %p
+            %b Domicilio:
+            = @restaurant.address
+          %p
+            %b Teléfono:
+            = @restaurant.phone
+          %p
+            %b RFC:
+            = @restaurant.rfc
+          %p
+            %b Descripcion:
+            = @restaurant.description
+          %p
+            %b Categoría:
+            = @restaurant.category_id
+
+          = link_to 'Editar', edit_restaurant_path(@restaurant)
+          \|
+          = link_to 'Regresar', restaurants_path
