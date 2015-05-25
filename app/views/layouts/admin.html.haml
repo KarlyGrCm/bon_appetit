@@ -1,0 +1,59 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title BonAppetit
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.red
+      .nav-wrapper.container
+        %a.brand-logo{:href => "#!"} Arekar Technologies
+        %a.button-collapse{"data-activates" => "mobile-demo", :href => "#"}
+          %i.mdi-navigation-menu
+        %ul.right.hide-on-med-and-down
+          %li
+            %a{:href => restaurants_path} Restaurantes
+          %li
+            %a{:href => "login.html"} Usuarios
+          %li
+            %a{:href => "contact.html"} Cerrar sesion
+        %ul#mobile-demo.side-nav
+          %li
+            %a{:href => restaurants_path} Restaurantes
+          %li
+            %a{:href => "login.html"} Usuarios
+          %li
+            %a{:href => "contact.html"} Cerrar sesión
+    
+
+    = yield
+    
+    %footer.page-footer.red
+      .container
+        .row
+          .col.l6.s12
+            %h5.white-text Contactanos
+            %p.grey-text.text-lighten-4 Av. Universidad #333 Col. Las Vívoras. Colima, Col. Telefono (312) 313- 67-89
+          .col.l4.offset-l2.s12
+            %h5.white-text Redes sociales
+            %ul
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Facebook
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Twitter
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Instagram
+              %li
+                %a.grey-text.text-lighten-3{:href => "#!"} Youtube
+          .footer-copyright
+          .container
+            © 2014 Copyright Text
+
+
+    :javascript
+    $(document).ready(function(){
+      $(".button-collapse").sideNav();
+      $('.parallax').parallax();
+    }) 
