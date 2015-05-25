@@ -7,7 +7,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav
+    %nav.red
       .nav-wrapper.container
         %a.brand-logo{:href => "#!"} Arekar Technologies
         %a.button-collapse{"data-activates" => "mobile-demo", :href => "#"}
@@ -17,19 +17,23 @@
             %a{:href => "index.html"} Inicio
           %li
             %a{:href => "restaurantes.html"} Restaurantes
-          %li
-            %a{:href => "login.html"} Mi cuenta
-          %li
-            %a{:href => "contact.html"} Contacto
+          - if user_signed_in?
+            %li
+              = link_to 'Cerrar sesión' , destroy_user_session_path, method: :delete
+          - else
+            %li
+              %a{:href => new_user_session_path} Iniciar sesión
         %ul#mobile-demo.side-nav
           %li
             %a{:href => "index.html"} Inicio
           %li
             %a{:href => "restaurantes.html"} Restaurantes
-          %li
-            %a{:href => "login.html"} Mi cuenta
-          %li
-            %a{:href => "contact.html"} Contacto
+          - if user_signed_in?
+            %li
+              %a{:href => destroy_user_session_path} Cerrar sesión
+          - else
+            %li
+              %a{:href => new_user_session_path} Iniciar sesión
     
 
     = yield

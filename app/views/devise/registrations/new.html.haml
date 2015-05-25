@@ -1,0 +1,28 @@
+.container
+  %h5 Formulario de registro
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    .field
+      = f.label 'Correo electronico'
+      %br/
+      = f.email_field :email, autofocus: true
+      - unless resource.errors[:email].blank?
+        %span.red-text.text-accent-4
+          = resource.errors[:email].shift
+      .field
+      = f.label 'Contraseña'
+      - if @minimum_password_length
+        (#{@minimum_password_length} carácteres minimo)
+      %br/
+      = f.password_field :password, autocomplete: "off"
+      - unless resource.errors[:password].blank?
+        %span.red-text.text-accent-4
+          = resource.errors[:password].shift
+    .field
+      = f.label 'Confirmar contraseña'
+      %br/
+      = f.password_field :password_confirmation, autocomplete: "off"
+      - unless resource.errors[:password_confirmation].blank?
+        %span.red-text.text-accent-4
+          = resource.errors[:password_confirmation].shift
+    .actions
+      = f.submit "Registrarse", class: 'btn'
