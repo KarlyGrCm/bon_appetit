@@ -1,7 +1,11 @@
 .container
-  %h1.center Platillos
+  .row
+    .col.s12.m5
+      = image_tag(@restaurant.image.url)
+    .col.s12.m5
+      %h2.center= @restaurant.name
 
-  %table
+  %table.striped
     %thead
       %tr
         %th Nombre

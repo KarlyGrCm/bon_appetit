@@ -1,4 +1,5 @@
 class DishesController < ApplicationController
+  layout 'admin'
   before_action :set_restaurant
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
   
@@ -6,7 +7,7 @@ class DishesController < ApplicationController
   # GET /dishes
   # GET /dishes.json
   def index
-    @dishes = Dish.all
+    @dishes = @restaurant.dishes
   end
 
   # GET /dishes/1

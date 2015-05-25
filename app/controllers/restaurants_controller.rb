@@ -1,4 +1,5 @@
 class RestaurantsController < ApplicationController
+  layout 'admin'
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   # GET /restaurants
