@@ -15,3 +15,8 @@ Category.create({name: 'Dogos y hamburguesas'})
 Category.create({name: 'Comida oriental'})
 Category.create({name: 'Cafe restaurant'})
 Category.create({name: 'Cocina economica'})
+
+
+Role.create({name: 'Cliente', description: 'Cliente comprador'})
+Role.create({name: 'Administrador', description: 'Administrador general del sistema'})
+Role.create({name: 'Restaurantero', description: 'Propietario y administrador de un restaurant'})
