@@ -15,23 +15,17 @@
         %ul.right.hide-on-med-and-down
           %li
             %a{:href => restaurants_path} Restaurantes
-          - if user_sign_in?
+          - if user_signed_in?
             %li
-              %a{:href => destroy_user_session_path} Cerrar sesión
-          - else
-            %li
-              %a{:href => new_user_session_path} Iniciar sesión
+              = link_to 'Cerrar sesión' , destroy_user_session_path, method: :delete
         %ul#mobile-demo.side-nav
           %li
             %a{:href => restaurants_path} Restaurantes
           %li
             %a{:href => "login.html"} Usuarios
-          - if user_sign_in?
+          - if user_signed_in?
             %li
-              %a{:href => destroy_user_session_path} Cerrar sesión
-          - else
-            %li
-              %a{:href => new_user_session_path} Iniciar sesión
+              = link_to 'Cerrar sesión' , destroy_user_session_path, method: :delete
     
 
     = yield
