@@ -7,16 +7,16 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.red
+    %nav.amber.darken-4
       .nav-wrapper.container
-        %a.brand-logo{:href => "#!"} Arekar Technologies
+        =image_tag('Icono.png', width: 60, heidth: 50)
         %a.button-collapse{"data-activates" => "mobile-demo", :href => "#"}
           %i.mdi-navigation-menu
         %ul.right.hide-on-med-and-down
           %li
-            %a{:href => "index.html"} Inicio
+            %a{:href => root_url} Inicio
           %li
-            %a{:href => "restaurantes.html"} Restaurantes
+            %a{:href => '/categorias'} Restaurantes
           - if user_signed_in?
             %li
               = link_to 'Cerrar sesión' , destroy_user_session_path, method: :delete
@@ -27,7 +27,7 @@
           %li
             %a{:href => "index.html"} Inicio
           %li
-            %a{:href => "restaurantes.html"} Restaurantes
+            %a{:href => "/categories"} Restaurantes
           - if user_signed_in?
             %li
               %a{:href => destroy_user_session_path} Cerrar sesión
@@ -35,29 +35,19 @@
             %li
               %a{:href => new_user_session_path} Iniciar sesión
     
-
     = yield
     
-    %footer.page-footer.red
+    %footer.page-footer.amber.darken-4
       .container
         .row
           .col.l6.s12
             %h5.white-text Contactanos
             %p.grey-text.text-lighten-4 Av. Universidad #333 Col. Las Vívoras. Colima, Col. Telefono (312) 313- 67-89
           .col.l4.offset-l2.s12
-            %h5.white-text Redes sociales
+            %h5.white-text Correo electronico
             %ul
               %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Facebook
-              %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Twitter
-              %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Instagram
-              %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Youtube
-          .footer-copyright
-          .container
-            © 2014 Copyright Text
+                %a.grey-text.text-lighten-3{:href => "#!"} contacto@arekartech.com
 
 
     :javascript

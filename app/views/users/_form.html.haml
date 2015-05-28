@@ -1,0 +1,16 @@
+= form_for(@user, html: {multipart: true} ) do |f|
+	.row
+		%i.mdi-communication-email.prefix
+		= f.label 'Email'
+		= f.text_field :email
+		- unless @user.errors[:email].blank?
+			%span.red-text.text-accent-4
+				= @user.errors[:email].shift
+	.row
+		= f.label 'Tipo'
+		= select(:user, :role_id, Role.all.collect{|role| [role.name, role.id]},{prompt: "Selecciona un tipo"}, {class: 'browser-default'})
+		- unless @user.errors[:role_id].blank?
+			%span.red-text.text-accent-4
+				= @user.errors[:role_id].shift
+	.row
+		= f.submit 'Aceptar', class: 'btn green accent-3'

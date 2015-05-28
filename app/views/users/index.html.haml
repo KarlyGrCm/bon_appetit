@@ -1,0 +1,20 @@
+.container
+  %h1.center Usuarios
+
+  %table.striped
+    %thead
+      %tr
+        %th Email
+        %th Tipo
+        
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.email
+          %td= user.role.name
+          %td= link_to 'Mostrar', user
+
+  %br
+.separator
+.separator

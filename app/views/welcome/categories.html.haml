@@ -1,0 +1,21 @@
+.separator
+.container
+	.row
+		.col.s3
+			%h5 Categorías
+			.collection
+				- @categories.each do |category|
+					.collection-item
+						%a{:href => "/categorias/#{category.id}"}
+							= category.name
+		.col.s9
+			- @restaurants.each do |restaurant| 
+				.card-panel.grey.lighten-5.z-depth-1
+					.row.valign-wrapper
+						.col.s4.m2
+							= image_tag(restaurant.image.url, width:100, heidth: 50)
+						.col.s8.m10
+							%span.black-text 
+								%a.center{:href => "/restaurante/#{restaurant.id}"}
+									= restaurant.name
+								%p= restaurant.description

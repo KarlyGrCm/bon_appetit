@@ -1,7 +1,8 @@
+.separator
 .container
   .row
     .col.s12.m5
-      = image_tag(@restaurant.image.url)
+      = image_tag(@restaurant.image.url, width: 250 , heidth: 200, pading: 10)
     .col.s12.m5
       %h2.center= @restaurant.name
 

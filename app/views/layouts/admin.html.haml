@@ -7,55 +7,44 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.red
+    %nav.amber.darken-4
       .nav-wrapper.container
-        %a.brand-logo{:href => "#!"} Arekar Technologies
+        =image_tag('Icono.png', width: 60, heidth: 50) 
         %a.button-collapse{"data-activates" => "mobile-demo", :href => "#"}
           %i.mdi-navigation-menu
         %ul.right.hide-on-med-and-down
           %li
             %a{:href => restaurants_path} Restaurantes
-          - if user_sign_in?
+          -if current_user.is_admin?
             %li
-              %a{:href => destroy_user_session_path} Cerrar sesión
-          - else
+              %a{:href => users_path} Usuarios
+          - if user_signed_in?
             %li
-              %a{:href => new_user_session_path} Iniciar sesión
+              = link_to 'Cerrar sesión' , destroy_user_session_path, method: :delete
         %ul#mobile-demo.side-nav
           %li
             %a{:href => restaurants_path} Restaurantes
           %li
             %a{:href => "login.html"} Usuarios
-          - if user_sign_in?
+          - if user_signed_in?
             %li
-              %a{:href => destroy_user_session_path} Cerrar sesión
-          - else
-            %li
-              %a{:href => new_user_session_path} Iniciar sesión
+              = link_to 'Cerrar sesión' , destroy_user_session_path, method: :delete
     
 
     = yield
     
-    %footer.page-footer.red
+    %footer.page-footer.amber.darken-4
       .container
         .row
           .col.l6.s12
             %h5.white-text Contactanos
             %p.grey-text.text-lighten-4 Av. Universidad #333 Col. Las Vívoras. Colima, Col. Telefono (312) 313- 67-89
           .col.l4.offset-l2.s12
-            %h5.white-text Redes sociales
+            %h5.white-text Correo Electronico
             %ul
               %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Facebook
-              %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Twitter
-              %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Instagram
-              %li
-                %a.grey-text.text-lighten-3{:href => "#!"} Youtube
+                %a.grey-text.text-lighten-3{:href => "#!"} Conctacto@arekartech.com
           .footer-copyright
-          .container
-            © 2014 Copyright Text
 
 
     :javascript

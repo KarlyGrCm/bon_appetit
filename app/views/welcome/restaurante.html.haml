@@ -1,0 +1,52 @@
+.separator
+.container
+	%p#notice= notice
+	.row
+		- @restaurant.dishes.each do |dish|
+			.col.s12.m5
+				= image_tag(dish.image.url)
+			.col.s12.m5
+				.card-panel.red.lighten-5
+					%span.black-text
+						%p
+							%b Nombre:
+							= dish.name
+						%p
+							%b Descripción:
+							= dish.description
+						%p
+							%b Precio:
+							= dish.price
+
+							- if user_signed_in?
+								= form_tag('/orders', method: :post) do 
+									%input{type: 'hidden', value: dish.id, name: 'dish_id'} 
+									%button.btn 
+										Agregar a pedido
+	- unless @order.nil?
+		.col.s6.m6
+			.card-panel.red.lighten-5
+				%table.striped
+					%thead
+						%tr
+							%th Nombre
+							%th Precio
+
+					%tbody
+						- unless @dishes.nil?
+							- @dishes.each do |dish|
+								%tr
+									%th 
+										= dish.name
+									%th 
+										= dish.price
+							%tr
+								%th Total
+								%th 
+									= @dishes.map(&:price).inject(0, :+)
+
+				= form_tag("/checkout/#{@order.id}", method: :get) do 
+					%button.btn 
+						Finalizar compra
+	- if @order.nil?
+		.bigger
