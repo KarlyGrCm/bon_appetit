@@ -1,0 +1,21 @@
+.container
+  %p#notice= notice
+  
+  .row
+    .col.s12.m5
+      .card-panel.red.lighten-5
+        %span.black-text
+          %p
+            %b Email:
+            = @user.email
+          %p
+            %b Tipo:
+            = @user.role.name
+         
+          = link_to 'Regresar', users_path
+          |
+          = link_to 'Editar', edit_user_path(@user)
+          |
+          = link_to 'Eliminar', @user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+.bigger

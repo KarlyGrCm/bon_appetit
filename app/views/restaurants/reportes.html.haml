@@ -1,0 +1,38 @@
+.separator
+.container
+  - @orders.in_groups_of(2, false) do |group|
+    .row
+      - group.each do |order|
+        .col.s12.m5
+          .card-panel.red.lighten-5
+            %span.black-text
+              %p
+                %b Usuario:
+                = order.user.email
+              %p
+                %b Domicilio:
+                = "#{order.address.street} #{order.address.number}, #{order.address.city}, #{order.address.cp}"
+              %p
+                %b Platillos:
+                %table.striped
+                  %thead
+                    %tr
+                      %td Nombre:
+                      %td Precio:
+                  %tbody
+                    - order.dishes.each do |dish|
+                      %tr
+                        %td 
+                          = dish.name
+                        %td 
+                          = dish.price
+                    %tr
+                      %td 
+                        %strong Total
+                      %td
+                        %strong
+                          = order.dishes.map(&:price).inject(0,:+)
+              =form_tag('/send_order') do
+                %input{type: 'hidden', value: order.id, name: 'order_id'}
+                %button.btn 
+                  Enviado               

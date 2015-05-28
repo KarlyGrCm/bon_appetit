@@ -1,11 +1,26 @@
 class RestaurantsController < ApplicationController
   layout 'admin'
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :reportes]
+  before_action :authenticate_user!
 
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    if current_user.is_restaurant?
+      @restaurants = current_user.restaurants
+    else 
+      @restaurants = Restaurant.all
+    end
+  end
+
+  def reportes
+    @orders = @restaurant.orders.where({deliver: false, status: true})
+  end
+
+  def send_order
+    order = Order.find(params[:order_id])
+    order.update_attributes({deliver: true})
+    redirect_to reportes_restaurant_path(order.restaurant)
   end
 
   # GET /restaurants/1
@@ -15,7 +30,7 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/new
   def new
-    @restaurant = Restaurant.new
+    @restaurant = current_user.restaurants.new
   end
 
   # GET /restaurants/1/edit
@@ -25,7 +40,7 @@ class RestaurantsController < ApplicationController
   # POST /restaurants
   # POST /restaurants.json
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = current_user.restaurants.new(restaurant_params)
 
     respond_to do |format|
       if @restaurant.save

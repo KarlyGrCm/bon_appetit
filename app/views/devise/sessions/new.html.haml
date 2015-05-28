@@ -1,3 +1,4 @@
+.separator
 .container
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
@@ -9,5 +10,7 @@
       %br/
       = f.password_field :password, autocomplete: "off"
     .actions
-      = f.submit "Iniciar sesión", class: 'btn'
+      = f.submit "Iniciar sesion", class: 'btn'
+  .separator
   = render "devise/shared/links"
+.bigger

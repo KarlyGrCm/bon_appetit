@@ -1,9 +1,9 @@
 .container
   %h1.center Restaurantes
-
   %table.striped
     %thead
       %tr
+        %th Pedidos nuevos
         %th Nombre
         %th Domicilio
         %th Teléfono
@@ -14,19 +14,23 @@
         %th
         %th
 
-    %tbody
+    %tbody.collection
       - @restaurants.each do |restaurant|
-        %tr
+        
+        %tr.collection-item
+          %td= link_to restaurant.notification, reportes_restaurant_path(restaurant), class: 'btn'
           %td= restaurant.name
           %td= restaurant.address
           %td= restaurant.phone
           %td= restaurant.rfc
           %td= restaurant.description
           %td= restaurant.category.name
-          %td= link_to 'Mostrar', restaurant
-          %td= link_to 'Editar', edit_restaurant_path(restaurant)
-          %td= link_to 'Eliminar', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= link_to 'Mostrar', restaurant_dishes_path(restaurant)
+          -unless current_user.is_client?
+            %td= link_to 'Editar', edit_restaurant_path(restaurant)
+            %td= link_to 'Eliminar', restaurant, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %br
 
   = link_to 'Nuevo restaurante', new_restaurant_path, class: 'btn'
+.bigger

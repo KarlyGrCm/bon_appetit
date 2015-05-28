@@ -1,4 +1,23 @@
 .parallax-container
 	.parallax
 		= image_tag('homepage-splash.jpg')
-		%h3.center.white-text{:style => "padding-top:10% "} Comida en minutos
+		%h1.center.black-text{:style => "padding-top:10% "} Solo ordena ¡Y 
+		%em Bon appéttit!
+
+.container
+	%h1.center Categorias
+	- @categories.in_groups_of(4, false) do |group|
+		.row
+			- group.each do |category|
+				.col.s12.m3.l3
+					.card
+						.card-image
+							= image_tag(category.image)
+						.card-content
+							%a{:href => "/categorias/#{category.id}"}
+								= category.name
+:javascript
+	$(document).ready(function(){
+		$(".button-collapse").sideNav();
+		$('.parallax').parallax();
+	}) 

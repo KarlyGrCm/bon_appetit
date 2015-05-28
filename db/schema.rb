@@ -11,11 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525024122) do
+ActiveRecord::Schema.define(version: 20150528060755) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string  "street"
+    t.string  "number"
+    t.string  "city"
+    t.string  "cp"
+    t.integer "user_id"
+  end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "image"
   end
+
+  create_table "dish_orders", force: :cascade do |t|
+    t.float   "price"
+    t.integer "order_id"
+    t.integer "dish_id"
+  end
+
+  add_index "dish_orders", ["dish_id"], name: "index_dish_orders_on_dish_id"
+  add_index "dish_orders", ["order_id"], name: "index_dish_orders_on_order_id"
 
   create_table "dishes", force: :cascade do |t|
     t.string   "name"
@@ -29,6 +49,18 @@ ActiveRecord::Schema.define(version: 20150525024122) do
 
   add_index "dishes", ["restaurant_id"], name: "index_dishes_on_restaurant_id"
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.float   "total"
+    t.integer "restaurant_id"
+    t.boolean "status",        default: false
+    t.boolean "deliver",       default: false
+    t.integer "address_id"
+  end
+
+  add_index "orders", ["restaurant_id"], name: "index_orders_on_restaurant_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "address"
@@ -39,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150525024122) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "image"
+    t.integer  "user_id"
   end
 
   add_index "restaurants", ["category_id"], name: "index_restaurants_on_category_id"

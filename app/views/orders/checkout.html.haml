@@ -1,0 +1,50 @@
+.separator
+.container
+	%h3.center Mis direcciones
+	- if !@order.user.addresses.empty?
+		.col.s6.m6
+			.card-panel.red.lighten-5
+				%table.striped
+					%thead
+						%tr
+							%th Direción
+					%tbody
+						- @order.user.addresses.each do |address|
+							%tr
+								%th 
+									= "#{address.street} #{address.number}, #{address.city}"
+								%th 
+									= form_tag('/finish', method: :post) do 
+										%input{type: 'hidden', value: address.id, name: 'address_id'} 
+										%input{type: 'hidden', value: @order.id, name: 'order_id'} 
+										%button.btn 
+											Seleccionar
+	.separator
+	%h4 Nueva direccion 
+	= form_for(@address, url: {action: :add_address, order_id: @order.id}) do |f|
+		.row
+			= f.label 'Calle'
+			= f.text_field :street
+			- unless @address.errors[:street].blank?
+				%span.red-text.text-accent-4
+					= @address.errors[:street].shift
+		.row
+			= f.label 'Numero'
+			= f.text_field :number
+			- unless @address.errors[:number].blank?
+				%span.red-text.text-accent-4
+					= @address.errors[:number].shift
+		.row
+			= f.label 'Ciudad'
+			= f.text_field :city
+			- unless @address.errors[:city].blank?
+				%span.red-text.text-accent-4
+					= @address.errors[:city].shift
+		.row
+			= f.label 'Codigo postal'
+			= f.text_field :cp
+			- unless @address.errors[:cp].blank?
+				%span.red-text.text-accent-4
+					= @address.errors[:cp].shift
+		.actions.row
+			= f.submit 'Aceptar', class: 'btn'
